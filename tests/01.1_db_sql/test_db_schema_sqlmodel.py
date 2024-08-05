@@ -27,15 +27,15 @@ print(f"TABLES in {DB}:")
 rprint(inspector.get_table_names())
 print("=======================================================================")
 
-print("\ntracks table")
-table = "tracks"
+print("\nmessage table")
+table = "base_message"
 # Get column information
 columns = {columns["name"]: columns for columns in inspector.get_columns(table)}
-assert columns["trackid"]["primary_key"] == 1  # i.e true
+assert columns["id"]["primary_key"] == 1  # i.e true
 rprint(columns)
 print("-----------------------------------------------------")
-print("\nartists table")
-table = "artists"
+print("\message table")
+table = "base_message"
 # Get column information
 columns = {columns["name"]: columns for columns in inspector.get_columns(table)}
 rprint(columns)
@@ -45,54 +45,43 @@ def test_0023_db_column_type():
     # Get column information
     # print("==========================")
     # print("\n\nis_trackid_integer")
-    table = "tracks"
+    table = "base_message"
     columns = {columns["name"]: columns for columns in inspector.get_columns(table)}
-    assert isinstance(columns["trackid"]["type"], Integer)
+    assert isinstance(columns["id"]["type"], Integer)
 
 
 #  get FK
 def test_0024_db_artist_has_no_fk():
-    """Check Foreign Keys artist"""
-    # print("==========================")
-    # print("\n\nartists_has_no_fk")
-    table = "artists"
+    """Check Foreign Keys Message"""
+
+    table = "base_message"
     foreign_keys_artist = inspector.get_foreign_keys(table)
-    assert len(foreign_keys_artist) == 0
-    # rprint("Foreign Keys for artists?: ", foreign_keys_artist)
+    assert len(foreign_keys_artist) == 2
 
 
-def test_0025_db_track_has_fk():
+def test_0025_db_message_has_fk():
     # print("==========================")
     # print("\n\ntrack_has_fk")
     """Check Foreign Keys track - there is one track to artist"""
-    table = "tracks"
-    foreign_keys_track = inspector.get_foreign_keys(table)
-    assert len(foreign_keys_track) > 0
+    table = "base_message"
+    foreign_keys_message = inspector.get_foreign_keys(table)
+    assert len(foreign_keys_message) > 0
 
 
 def test_0026_db_nullables():
     """Check trackid is not nullable"""
-    table = "tracks"
+    table = "base_message"
     # Get column information
     columns = {columns["name"]: columns for columns in inspector.get_columns(table)}
-    assert columns["trackid"]["nullable"] is False
+    assert columns["id"]["nullable"] is False
 
 
 def test_0027_db_primary_key():
     """Check trackid is primary key"""
-    table = "tracks"
+    table = "base_message"
     # Get column information
     columns = {columns["name"]: columns for columns in inspector.get_columns(table)}
-    assert columns["trackid"]["primary_key"] == 1  # i.e true
-
-
-def test_0028_db_default():
-    """Check trackid has default value"""
-    table = "tracks"
-    # Get column information
-    columns = {columns["name"]: columns for columns in inspector.get_columns(table)}
-    assert columns["trackid"]["default"] is None
-    assert columns["trackname"]["default"] == "'TONY'"  # in db schema value is 'TONY'
+    assert columns["id"]["primary_key"] == 1  # i.e true
 
 
 def test_0029_db_unique():
@@ -114,12 +103,12 @@ def test_0030_db_check_constraint():
     Check trackname has min 5 characters
 
     """
-    table = "tracks"
+    table = "base_message"
     # Get column information
     columns = {columns["name"]: columns for columns in inspector.get_columns(table)}
     # print(
     #     "In sqlite the CHECK constraint is not in the schema. It is, though, in the database."
     # )
     print("We could do an insert test to raise an exception.")
-    assert columns["trackname"]["check"] != ""
+    assert columns["name"]["check"] != ""
     assert True
