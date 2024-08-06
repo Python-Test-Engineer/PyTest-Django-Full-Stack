@@ -3,8 +3,9 @@ from sqlmodel import create_engine, inspect
 from sqlmodel import Integer
 from pathlib import Path
 
-from rich import print as rprint
+from rich.console import Console
 
+console = Console()
 DB = "db.sqlite3"
 
 # 1
@@ -18,30 +19,26 @@ engine = create_engine(DB_URI)
 
 inspector = inspect(engine)
 
-# Get table information
-print("\n\n=======================================================================\n")
-print("-----------------")
-print(f"{DB_URI}")
-print("-----------------\n")
-print(f"TABLES in {DB}:")
-rprint(inspector.get_table_names())
-print("=======================================================================")
+console.print(f"\n[green bold]{DB_URI}[/]")
+console.print(
+    "[blue]============================ APP TABLES ===============================[/]"
+)
+print(f"APP TABLES in {DB}:")
+all_tables = inspector.get_table_names()
+app_tables = filter(lambda x: x.startswith(("base_", "ecommerce_")), all_tables)
+console.print(list(app_tables))
+console.print(
+    "[blue]============================ base_message table ===============================[/]"
+)
 
-print("\nmessage table")
 table = "base_message"
 # Get column information
 columns = {columns["name"]: columns for columns in inspector.get_columns(table)}
 assert columns["id"]["primary_key"] == 1  # i.e true
-rprint(columns)
-print("-----------------------------------------------------")
-print("\message table")
-table = "base_message"
-# Get column information
-columns = {columns["name"]: columns for columns in inspector.get_columns(table)}
-rprint(columns)
+console.print(columns)
 
 
-def test_0023_db_column_type():
+def test_SQL_001_db_column_type():
     # Get column information
     # print("==========================")
     # print("\n\nis_trackid_integer")
@@ -51,54 +48,45 @@ def test_0023_db_column_type():
 
 
 #  get FK
-def test_0024_db_artist_has_no_fk():
+def test_SQL_002_message_has_2_fks():
     """Check Foreign Keys Message"""
 
     table = "base_message"
-    foreign_keys_artist = inspector.get_foreign_keys(table)
-    assert len(foreign_keys_artist) == 2
+    foreign_keys_messages = inspector.get_foreign_keys(table)
+    console.print(foreign_keys_messages)
+    assert len(foreign_keys_messages) == 2
 
 
-def test_0025_db_message_has_fk():
-    # print("==========================")
-    # print("\n\ntrack_has_fk")
-    """Check Foreign Keys track - there is one track to artist"""
-    table = "base_message"
-    foreign_keys_message = inspector.get_foreign_keys(table)
-    assert len(foreign_keys_message) > 0
-
-
-def test_0026_db_nullables():
-    """Check trackid is not nullable"""
+def test_SQL_003_id_not_nullable():
+    """Check id is not nullable"""
     table = "base_message"
     # Get column information
     columns = {columns["name"]: columns for columns in inspector.get_columns(table)}
     assert columns["id"]["nullable"] is False
 
 
-def test_0027_db_primary_key():
-    """Check trackid is primary key"""
+def test_SQL_004_id_is_primary_key():
+    """Check id is primary key"""
     table = "base_message"
     # Get column information
     columns = {columns["name"]: columns for columns in inspector.get_columns(table)}
     assert columns["id"]["primary_key"] == 1  # i.e true
 
 
-def test_0029_db_unique():
+def test_SQL_005_db_unique():
     """
-    Check artistname is unique. N/A in SQLite
+    Check a field is unique. N/A in SQLite
     """
-    # table = "artists"
-    # # Get column information
-    # columns = {columns["name"]: columns for columns in inspector.get_columns(table)}
-    # rprint(columns["artistname"])
-    # rprint("Check artistname is unique. N/A in SQLite.")
+    table = "base_message"
+    # Get column information
+    columns = {columns["name"]: columns for columns in inspector.get_columns(table)}
+    # console.print(columns["body"]["unique"])
+
     assert True
-    # assert columns["artistname"]["unique"] is True
 
 
 @pytest.mark.xfail
-def test_0030_db_check_constraint():
+def test_SQL_006_db_check_constraint():
     """
     Check trackname has min 5 characters
 
