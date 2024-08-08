@@ -1,9 +1,0 @@
-ORM|test_ORM_150_order_model_structure_table_exists|tests/01.2_db_orm/test_order.py::test_ORM_150_order_model_structure_table_exists|PASSED|0.000105|
-ORM|test_ORM_151_order_model_structure_nullable_constraints[Order-order_id-False]|tests/01.2_db_orm/test_order.py::test_ORM_151_order_model_structure_nullable_constraints[Order-order_id-False]|PASSED|0.000112|parametrize
-ORM|test_ORM_151_order_model_structure_nullable_constraints[Order-user-False]|tests/01.2_db_orm/test_order.py::test_ORM_151_order_model_structure_nullable_constraints[Order-user-False]|PASSED|7.9e-05|parametrize
-ORM|test_ORM_151_order_model_structure_nullable_constraints[Order-product-False]|tests/01.2_db_orm/test_order.py::test_ORM_151_order_model_structure_nullable_constraints[Order-product-False]|PASSED|8.8e-05|parametrize
-ORM|test_ORM_151_order_model_structure_nullable_constraints[Order-quantity-False]|tests/01.2_db_orm/test_order.py::test_ORM_151_order_model_structure_nullable_constraints[Order-quantity-False]|PASSED|7.8e-05|parametrize
-ORM|test_ORM_152_order_model_structure_column_data_types[Order-order_id-AutoField]|tests/01.2_db_orm/test_order.py::test_ORM_152_order_model_structure_column_data_types[Order-order_id-AutoField]|PASSED|7.5e-05|parametrize
-ORM|test_ORM_152_order_model_structure_column_data_types[Order-user-ForeignKey]|tests/01.2_db_orm/test_order.py::test_ORM_152_order_model_structure_column_data_types[Order-user-ForeignKey]|PASSED|0.000117|parametrize
-ORM|test_ORM_152_order_model_structure_column_data_types[Order-product-ForeignKey]|tests/01.2_db_orm/test_order.py::test_ORM_152_order_model_structure_column_data_types[Order-product-ForeignKey]|PASSED|8.4e-05|parametrize
-ORM|test_ORM_152_order_model_structure_column_data_types[Order-quantity-IntegerField]|tests/01.2_db_orm/test_order.py::test_ORM_152_order_model_structure_column_data_types[Order-quantity-IntegerField]|PASSED|7.8e-05|parametrize

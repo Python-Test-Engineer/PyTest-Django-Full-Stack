@@ -1,5 +1,0 @@
-install|test_install|tests/00_setup/test_01_setup.py::test_install|PASSED|0.000107|
-GEN|test_GEN_001_get_version|tests/00_setup/test_02_config.py::test_GEN_001_get_version|PASSED|0.000109|
-GEN|test_GEN_002_log_info|tests/00_setup/test_03_logging.py::test_GEN_002_log_info|PASSED|0.000183|
-GEN|test_GEN_003_log_warn|tests/00_setup/test_03_logging.py::test_GEN_003_log_warn|PASSED|0.000307|
-GEN|test_GEN_004_log_critical|tests/00_setup/test_03_logging.py::test_GEN_004_log_critical|PASSED|0.000273|

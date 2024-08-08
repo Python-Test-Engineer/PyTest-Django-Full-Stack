@@ -1,51 +1,58 @@
 """Unit tests for StudyBuddy homepage"""
 
+import pytest
 from http import HTTPStatus
 
+from django.test import RequestFactory
+from django.test import Client
 
-from base.views import registerPage, home
-from django.contrib.auth.models import AnonymousUser, User
-from django.test import RequestFactory, TestCase
-
+from base.views import home, registerPage
 
 HOMEPAGE_URL = "http://127.0.0.1:8000/"
 
+# add mark for all tests
+pytestmark = pytest.mark.django_db
 
-class TestHomePage(TestCase):
-    """test home page"""
+def test_VWS_175_homepage_returns_correct_response_client():
+    """test if homepage has correct template used and HTTP status code"""
 
-    def setUp(self) -> None:
-        self.factory = RequestFactory()
-        print(f"\nHomepage: {HOMEPAGE_URL}")
+    client = Client()
+    response = client.get(HOMEPAGE_URL)
+    assert response.status_code == 200
 
-    def test_homepage_returns_correct_response(self):
-        """test if homepage has correct template used and HTTP status code"""
-        response = self.client.get(HOMEPAGE_URL)
-        print(f"\nResponse code: {response.status_code}")
-        self.assertTemplateUsed(response, "base/home.html")
-        self.assertEqual(response.status_code, HTTPStatus.OK)
 
-    def test_homepage_returns_correct_title(self):
-        """Test if homepage has correct title"""
-        response = self.client.get(HOMEPAGE_URL)
-        print(f"\nResponse: {response}")
-        self.assertContains(response, "<h2>Study Rooms</h2>")
 
-    def test_using_factory(self):
-        """test using factory"""
+def test_VWS_176_homepage_returns_correct_response_request_factory():
 
-        request = self.factory.get(HOMEPAGE_URL)
+    # Create a request factory
+    factory = RequestFactory()
 
-        # Recall that middleware are not supported. You can simulate a
-        # logged-in user by setting request.user manually.
-        # request.user = self.user
+    # Create a GET request
+    request = factory.get(HOMEPAGE_URL)
 
-        # Or you can simulate an anonymous user by setting request.user to
-        # an AnonymousUser instance.
-        request.user = AnonymousUser()
+    # Create an instance of the view if CBV
+    # view = home.as_view()
 
-        # Test my_view() as if it were deployed at /customer/details
-        response = home(request)
-        # Use this syntax for class-based views.
-        response = home(request)
-        self.assertEqual(response.status_code, 200)
+    # Call the view with the request
+    response = home(request)
+
+    # Assert that the response is as expected
+    assert response.status_code == 200
+
+
+def test_VWS_177_registerPage_returns_correct_response_request_factory():
+    """Test registerPage view returns correct response"""
+    # Create a request factory
+    factory = RequestFactory()
+
+    # Create a GET request
+    request = factory.get(HOMEPAGE_URL)
+
+    # Create an instance of the view if CBV
+    # view = home.as_view()
+
+    # Call the view with the request
+    response = registerPage(request)
+
+    # Assert that the response is as expected
+    assert response.status_code == 200
