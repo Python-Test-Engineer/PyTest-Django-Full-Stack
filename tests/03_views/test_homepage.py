@@ -13,13 +13,13 @@ HOMEPAGE_URL = "http://127.0.0.1:8000/"
 # add mark for all tests
 pytestmark = pytest.mark.django_db
 
+
 def test_VWS_175_homepage_returns_correct_response_client():
     """test if homepage has correct template used and HTTP status code"""
 
     client = Client()
     response = client.get(HOMEPAGE_URL)
     assert response.status_code == 200
-
 
 
 def test_VWS_176_homepage_returns_correct_response_request_factory():
@@ -53,6 +53,8 @@ def test_VWS_177_registerPage_returns_correct_response_request_factory():
 
     # Call the view with the request
     response = registerPage(request)
+    print(response.content[:100])
 
     # Assert that the response is as expected
     assert response.status_code == 200
+    assert b"Register" in response.content
