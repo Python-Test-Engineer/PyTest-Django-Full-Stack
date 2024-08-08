@@ -4,7 +4,7 @@ from django.db import models
 from ecommerce.models import Category, Product, Order
 
 
-def test_model_structure_table_exists():
+def test_ORM_150_order_model_structure_table_exists():
     try:
         from ecommerce.models import Order  # noqa F401
     except ImportError:
@@ -22,7 +22,9 @@ def test_model_structure_table_exists():
         (Order, "quantity", False),
     ],
 )
-def test_model_structure_nullable_constraints(model, field_name, expected_nullable):
+def test_ORM_151_order_model_structure_nullable_constraints(
+    model, field_name, expected_nullable
+):
     # Get the field from the model
     field = model._meta.get_field(field_name)
 
@@ -41,7 +43,9 @@ def test_model_structure_nullable_constraints(model, field_name, expected_nullab
         (Order, "quantity", models.IntegerField),
     ],
 )
-def test_model_structure_column_data_types(model, field_name, expected_type):
+def test_ORM_152_order_model_structure_column_data_types(
+    model, field_name, expected_type
+):
     assert hasattr(
         model, field_name
     ), f"{model.__name__} model does not have '{field_name} field"

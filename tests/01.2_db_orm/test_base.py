@@ -4,7 +4,7 @@ from django.db import models
 from base.models import User, Topic
 
 
-def test_base_model_user_structure_table_exists():
+def test_ORM_120_base_model_user_structure_table_exists():
     try:
         from base.models import User  # noqa F401
 
@@ -14,7 +14,7 @@ def test_base_model_user_structure_table_exists():
         assert True
 
 
-def test_base_model_topic_structure_table_exists():
+def test_ORM_121_base_model_topic_structure_table_exists():
     try:
         from base.models import Topic  # noqa F401
 
@@ -39,7 +39,9 @@ def test_base_model_topic_structure_table_exists():
         (User, "avatar", models.ImageField),
     ],
 )
-def test_model_structure_column_data_types(model, field_name, expected_type):
+def test_ORM_122_base_model_structure_column_data_types(
+    model, field_name, expected_type
+):
     assert hasattr(
         model, field_name
     ), f"{model.__name__} model does not have '{field_name} field"
@@ -63,7 +65,7 @@ def test_model_structure_column_data_types(model, field_name, expected_type):
         ),
     ],
 )
-def test_model_structure_field_count(model, expected_field_count):
+def test_ORM_125_base_model_structure_field_count(model, expected_field_count):
     field_count = len(model._meta.fields)
     assert (
         field_count == expected_field_count
@@ -85,7 +87,9 @@ def test_model_structure_field_count(model, expected_field_count):
         (User, "avatar", True),
     ],
 )
-def test_model_structure_nullable_constraints(model, field_name, expected_nullable):
+def test_ORM_126_base_model_structure_nullable_constraints(
+    model, field_name, expected_nullable
+):
     # Get the field from the model
     field = model._meta.get_field(field_name)
 
@@ -106,7 +110,9 @@ def test_model_structure_nullable_constraints(model, field_name, expected_nullab
         (User, "avatar", "avatar.svg"),
     ],
 )
-def test_model_structure_default_values(model, field_name, expected_default_value):
+def test_ORM_127_base_model_structure_default_values(
+    model, field_name, expected_default_value
+):
     # Get the field from the model
     field = model._meta.get_field(field_name)
 
@@ -128,7 +134,9 @@ def test_model_structure_default_values(model, field_name, expected_default_valu
         (Topic, "name", 200),
     ],
 )
-def test_model_structure_column_lengths(model, field_name, expected_length):
+def test_ORM_128_base_model_structure_column_lengths(
+    model, field_name, expected_length
+):
     # Get the field from the model
     field = model._meta.get_field(field_name)
 
@@ -153,7 +161,7 @@ def test_model_structure_column_lengths(model, field_name, expected_length):
         # (Category, "level", False),
     ],
 )
-def test_model_structure_unique_fields(model, field_name, is_unique):
+def test_ORM_129_base_model_structure_unique_fields(model, field_name, is_unique):
     # Get the field from the model
     field = model._meta.get_field(field_name)
 

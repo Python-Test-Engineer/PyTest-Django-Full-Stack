@@ -14,7 +14,7 @@ from ecommerce.models import Category
 """
 
 
-def test_model_structure_table_exists():
+def test_ORM_140_category_model_structure_table_exists():
     try:
         from ecommerce.models import Category  # noqa F401
     except ImportError:
@@ -38,7 +38,9 @@ def test_model_structure_table_exists():
         (Category, "level", models.IntegerField),
     ],
 )
-def test_model_structure_column_data_types(model, field_name, expected_type):
+def test_ORM_142_category_model_structure_column_data_types(
+    model, field_name, expected_type
+):
     assert hasattr(
         model, field_name
     ), f"{model.__name__} model does not have '{field_name} field"
@@ -62,7 +64,7 @@ def test_model_structure_column_data_types(model, field_name, expected_type):
         ),  # Replace with the expected number of fields in the SeasonalEvent model
     ],
 )
-def test_model_structure_field_count(model, expected_field_count):
+def test_ORM_143_category_model_structure_field_count(model, expected_field_count):
     field_count = len(model._meta.fields)
     assert (
         field_count == expected_field_count
@@ -89,7 +91,9 @@ def test_model_structure_field_count(model, expected_field_count):
         (Category, "level", False),
     ],
 )
-def test_model_structure_nullable_constraints(model, field_name, expected_nullable):
+def test_ORM_144_category_model_structure_nullable_constraints(
+    model, field_name, expected_nullable
+):
     # Get the field from the model
     field = model._meta.get_field(field_name)
 
@@ -111,7 +115,9 @@ def test_model_structure_nullable_constraints(model, field_name, expected_nullab
         (Category, "level", 100),
     ],
 )
-def test_model_structure_default_values(model, field_name, expected_default_value):
+def test_ORM_145_category_model_structure_default_values(
+    model, field_name, expected_default_value
+):
     # Get the field from the model
     field = model._meta.get_field(field_name)
 
@@ -133,7 +139,9 @@ def test_model_structure_default_values(model, field_name, expected_default_valu
         (Category, "slug", 120),
     ],
 )
-def test_model_structure_column_lengths(model, field_name, expected_length):
+def test_ORM_146_category_model_structure_column_lengths(
+    model, field_name, expected_length
+):
     # Get the field from the model
     field = model._meta.get_field(field_name)
 
@@ -158,7 +166,7 @@ def test_model_structure_column_lengths(model, field_name, expected_length):
         (Category, "level", False),
     ],
 )
-def test_model_structure_unique_fields(model, field_name, is_unique):
+def test_ORM_147_category_model_structure_unique_fields(model, field_name, is_unique):
     # Get the field from the model
     field = model._meta.get_field(field_name)
 

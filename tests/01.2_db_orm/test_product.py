@@ -19,7 +19,7 @@ console = Console()
 """
 
 
-def test_model_structure_table_exists():
+def test_ORM_16_product_model_structure_table_exists():
     try:
         from ecommerce.models import Product  # noqa F401
     except ImportError:
@@ -48,7 +48,9 @@ def test_model_structure_table_exists():
         (Product, "stock_status", models.CharField),
     ],
 )
-def test_model_structure_column_data_types(model, field_name, expected_type):
+def test_ORM_161_product_model_structure_column_data_types(
+    model, field_name, expected_type
+):
     assert hasattr(
         model, field_name
     ), f"{model.__name__} model does not have '{field_name} field"
@@ -72,7 +74,7 @@ def test_model_structure_column_data_types(model, field_name, expected_type):
         ),  # Replace with the expected number of fields in the SeasonalEvent model
     ],
 )
-def test_model_structure_field_count(model, expected_field_count):
+def test_ORM_162_product_model_structure_field_count(model, expected_field_count):
     field_count = len(model._meta.fields)
     assert (
         field_count == expected_field_count
@@ -95,7 +97,7 @@ def test_model_structure_field_count(model, expected_field_count):
         ),
     ],
 )
-def test_model_structure_m2m_relation_key(
+def test_ORM_163_product_model_structure_m2m_relation_key(
     model,
     field_name,
     expected_type,
@@ -132,7 +134,9 @@ def test_model_structure_m2m_relation_key(
         (Product, "stock_status", False),
     ],
 )
-def test_model_structure_nullable_constraints(model, field_name, expected_nullable):
+def test_ORM_164_product_model_structure_nullable_constraints(
+    model, field_name, expected_nullable
+):
     # Get the field from the model
     field = model._meta.get_field(field_name)
 
@@ -155,7 +159,9 @@ def test_model_structure_nullable_constraints(model, field_name, expected_nullab
         (Product, "stock_status", "OOS"),
     ],
 )
-def test_model_structure_default_values(model, field_name, expected_default_value):
+def test_ORM_165_product_model_structure_default_values(
+    model, field_name, expected_default_value
+):
     # Get the field from the model
     field = model._meta.get_field(field_name)
 
@@ -178,7 +184,9 @@ def test_model_structure_default_values(model, field_name, expected_default_valu
         (Product, "slug", 220),
     ],
 )
-def test_model_structure_column_lengths(model, field_name, expected_length):
+def test_ORM_166_product_model_structure_column_lengths(
+    model, field_name, expected_length
+):
     # Get the field from the model
     field = model._meta.get_field(field_name)
 
@@ -208,7 +216,7 @@ def test_model_structure_column_lengths(model, field_name, expected_length):
         (Product, "stock_status", False),
     ],
 )
-def test_model_structure_unique_fields(model, field_name, is_unique):
+def test_ORM_167_product_model_structure_unique_fields(model, field_name, is_unique):
     # Get the field from the model
     field = model._meta.get_field(field_name)
 
