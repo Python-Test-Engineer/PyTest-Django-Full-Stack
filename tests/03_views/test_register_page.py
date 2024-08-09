@@ -34,11 +34,15 @@ def test_VWS_177_registerPage_returns_correct_response_request_factory():
 
     # Call the view with the request
     response = registerPage(request)
-    print(response.content[:100])
+    print(response.content[:450])
 
     # Assert that the response is as expected
     assert response.status_code == 200
     assert b"Register" in response.content
+    assert (
+        b"<title>StudyBuddy - Find study partners around the world!</title>"
+        in response.content
+    )
     assertContains(response, "Register")
     # assertTemplateUsed() is only usable on responses fetched using the Django test Client.
 
@@ -50,7 +54,7 @@ def test_VWS_330_registerPage_returns_correct_template_testcase(client):
 
     form_csrf = str(response.context[1]["csrf_token"])
     form_data = str(response.context[1]["form"])
-    # console.print(form_data)
+    console.print(form_data)
 
     assertTemplateUsed(response, "base/login_register.html")
     assert response.status_code == HTTPStatus.OK
