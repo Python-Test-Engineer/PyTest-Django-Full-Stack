@@ -1,0 +1,1 @@
+{'form': <MyUserCreationForm bound=False, valid=False, fields=(name;username;email;password1;password2)>}

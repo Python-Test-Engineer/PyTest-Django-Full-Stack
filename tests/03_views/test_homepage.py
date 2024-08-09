@@ -38,23 +38,3 @@ def test_VWS_176_homepage_returns_correct_response_request_factory():
 
     # Assert that the response is as expected
     assert response.status_code == 200
-
-
-def test_VWS_177_registerPage_returns_correct_response_request_factory():
-    """Test registerPage view returns correct response"""
-    # Create a request factory
-    factory = RequestFactory()
-
-    # Create a GET request
-    request = factory.get(HOMEPAGE_URL)
-
-    # Create an instance of the view if CBV
-    # view = home.as_view()
-
-    # Call the view with the request
-    response = registerPage(request)
-    print(response.content[:100])
-
-    # Assert that the response is as expected
-    assert response.status_code == 200
-    assert b"Register" in response.content

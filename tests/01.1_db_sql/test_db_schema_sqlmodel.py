@@ -19,23 +19,25 @@ engine = create_engine(DB_URI)
 
 inspector = inspect(engine)
 
-console.print(f"\n[green bold]{DB_URI}[/]")
-console.print(
-    "[blue]============================ APP TABLES ===============================[/]"
-)
-print(f"APP TABLES in {DB}:")
-all_tables = inspector.get_table_names()
-app_tables = filter(lambda x: x.startswith(("base_", "ecommerce_")), all_tables)
-console.print(list(app_tables))
-console.print(
-    "[blue]============================ base_message table ===============================[/]"
-)
 
-table = "base_message"
-# Get column information
-columns = {columns["name"]: columns for columns in inspector.get_columns(table)}
-assert columns["id"]["primary_key"] == 1  # i.e true
-console.print(columns)
+def test_SQL_000_db_TABLES_exists():
+    console.print(f"\n[green bold]{DB_URI}[/]")
+    console.print(
+        "[blue]============================ APP TABLES ===============================[/]"
+    )
+    print(f"APP TABLES in {DB}:")
+    all_tables = inspector.get_table_names()
+    app_tables = filter(lambda x: x.startswith(("base_", "ecommerce_")), all_tables)
+    console.print(list(app_tables))
+    console.print(
+        "[blue]============================ base_message table ===============================[/]"
+    )
+
+    table = "base_message"
+    # Get column information
+    columns = {columns["name"]: columns for columns in inspector.get_columns(table)}
+    assert columns["id"]["primary_key"] == 1  # i.e true
+    console.print(columns)
 
 
 def test_SQL_001_db_column_type():
