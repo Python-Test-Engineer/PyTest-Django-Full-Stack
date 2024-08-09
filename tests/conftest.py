@@ -236,6 +236,7 @@ def pytest_runtest_call(item):
     # Called to run the test for test item (the call phase).
     # https://docs.pytest.org/en/7.1.x/reference/reference.html?highlight=pytest%20item#pytest.Item.add_report_section
     item.add_report_section("call", "custom", "content")
+    console.print("\n[green]-------START TEST-------[/]")
 
 
 def pytest_terminal_summary(terminalreporter, exitstatus, config):

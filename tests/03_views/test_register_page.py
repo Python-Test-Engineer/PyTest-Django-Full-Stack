@@ -50,9 +50,8 @@ def test_VWS_330_registerPage_returns_correct_template_testcase(client):
 
     form_csrf = str(response.context[1]["csrf_token"])
     form_data = str(response.context[1]["form"])
-    console.print(form_data)
+    # console.print(form_data)
 
     assertTemplateUsed(response, "base/login_register.html")
     assert response.status_code == HTTPStatus.OK
-
-    assert "maxlength" in form_data
+    assert "password2" in form_data
