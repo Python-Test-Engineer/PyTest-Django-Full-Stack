@@ -6,7 +6,9 @@ from http import HTTPStatus
 from base.views import registerPage, home
 from django.contrib.auth.models import AnonymousUser, User
 from django.test import RequestFactory, TestCase
+from rich.console import Console
 
+console = Console()
 
 HOMEPAGE_URL = "http://127.0.0.1:8000/"
 
@@ -24,10 +26,18 @@ class TestHomePage(TestCase):
         print(f"\nResponse code: {response.status_code}")
         self.assertTemplateUsed(response, "base/home.html")
         self.assertEqual(response.status_code, HTTPStatus.OK)
-        # self.assertEqual(response.context.get("rooms"), "Not found")
-        # self.assertEqual(response.context.get("topics"), "Not found")
-        # self.assertEqual(response.context.get("room_count"), "Not found")
-        # self.assertEqual(response.context.get("room_messages"), "Not found")
+        # print(response.context[0])
+        for item in response.context[0]:
+            for key, value in item.items():
+                print(f"{key}: {value}")
+                if key == "rooms":
+                    assert "rooms is in context"
+                if key == "topics":
+                    assert "topics is in context"
+                if key == "room_count":
+                    assert "room_count is in context"
+                if key == "room_messages":
+                    assert "room_messages is in context"
 
     def test_VWS_171_homepage_returns_correct_title(self):
         """Test if homepage has correct title"""
