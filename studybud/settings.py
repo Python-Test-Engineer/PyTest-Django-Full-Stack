@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "corsheaders",
     "django_extensions",
+    "classroom.apps.ClassroomConfig",
 ]
 AUTH_USER_MODEL = "base.User"
 
