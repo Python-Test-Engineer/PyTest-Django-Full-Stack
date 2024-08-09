@@ -1,0 +1,2 @@
+VWS|test_VWS_172_homepage_using_factory|tests/03_views/test_homepage.py::test_VWS_172_homepage_using_factory|FAILED|0.476924|
+VWS|test_VWS_172_homepage_using_factory|tests/03_views/test_homepage_testcase.py::TestHomePage::test_VWS_172_homepage_using_factory|PASSED|0.007438|

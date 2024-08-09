@@ -29,6 +29,18 @@ def test_VWS_172_homepage_using_factory():
     # Use this syntax for class-based views.
     response = home(request)
     assert response.status_code == 200
+    # RequestFactory has not context just Client
+    # for item in response.context[0]:
+    #     for key, value in item.items():
+    #         print(f"{key}: {value}")
+    #         if key == "rooms":
+    #             assert "rooms is in context"
+    #         if key == "topics":
+    #             assert "topics is in context"
+    #         if key == "room_count":
+    #             assert "room_count is in context"
+    #         if key == "room_messages":
+    #             assert "room_messages is in context"
 
 
 def test_VWS_175_homepage_returns_correct_response_client():
@@ -37,6 +49,17 @@ def test_VWS_175_homepage_returns_correct_response_client():
     client = Client()
     response = client.get(HOMEPAGE_URL)
     assert response.status_code == 200
+    for item in response.context[0]:
+        for key, value in item.items():
+            print(f"{key}: {value}")
+            if key == "rooms":
+                assert "rooms is in context"
+            if key == "topics":
+                assert "topics is in context"
+            if key == "room_count":
+                assert "room_count is in context"
+            if key == "room_messages":
+                assert "room_messages is in context"
 
 
 def test_VWS_176_homepage_returns_correct_response_request_factory():
