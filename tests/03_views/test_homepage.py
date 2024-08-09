@@ -1,6 +1,8 @@
 """Unit tests for StudyBuddy homepage"""
 
 import pytest
+import pytest
+from pytest_django.asserts import assertContains, assertTemplateUsed
 from http import HTTPStatus
 
 from django.test import RequestFactory
@@ -12,6 +14,21 @@ HOMEPAGE_URL = "http://127.0.0.1:8000/"
 
 # add mark for all tests
 pytestmark = pytest.mark.django_db
+
+
+def test_VWS_172_homepage_using_factory():
+    """test using factory"""
+
+    # Create a request factory
+    factory = RequestFactory()
+
+    # Create a GET request
+    request = factory.get(HOMEPAGE_URL)
+    # Test my_view() as if it were deployed at /customer/details
+    response = home(request)
+    # Use this syntax for class-based views.
+    response = home(request)
+    assert response.status_code == 200
 
 
 def test_VWS_175_homepage_returns_correct_response_client():
