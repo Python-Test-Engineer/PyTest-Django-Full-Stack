@@ -33,12 +33,6 @@ def test_SQL_000_db_TABLES_exists():
         "[blue]============================ base_message table ===============================[/]"
     )
 
-    table = "base_message"
-    # Get column information
-    columns = {columns["name"]: columns for columns in inspector.get_columns(table)}
-    assert columns["id"]["primary_key"] == 1  # i.e true
-    console.print(columns)
-
 
 def test_SQL_001_db_column_type():
     # Get column information
@@ -47,6 +41,8 @@ def test_SQL_001_db_column_type():
     table = "base_message"
     columns = {columns["name"]: columns for columns in inspector.get_columns(table)}
     assert isinstance(columns["id"]["type"], Integer)
+    assert columns["id"]["primary_key"] == 1  # i.e true
+    console.print(columns)
 
 
 #  get FK
