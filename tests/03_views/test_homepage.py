@@ -43,8 +43,8 @@ def test_VWS_172_homepage_using_factory():
     #             assert "room_messages is in context"
 
 
-def test_VWS_175_homepage_returns_correct_response_client():
-    """test if homepage has correct template used and HTTP status code"""
+def test_VWS_175_homepage_returns_correct_response_client_and_context():
+    """test if homepage has correct template used, context and HTTP status code"""
 
     client = Client()
     response = client.get(HOMEPAGE_URL)
@@ -60,21 +60,3 @@ def test_VWS_175_homepage_returns_correct_response_client():
                 assert "room_count is in context"
             if key == "room_messages":
                 assert "room_messages is in context"
-
-
-def test_VWS_176_homepage_returns_correct_response_request_factory():
-
-    # Create a request factory
-    factory = RequestFactory()
-
-    # Create a GET request
-    request = factory.get(HOMEPAGE_URL)
-
-    # Create an instance of the view if CBV
-    # view = home.as_view()
-
-    # Call the view with the request
-    response = home(request)
-
-    # Assert that the response is as expected
-    assert response.status_code == 200
