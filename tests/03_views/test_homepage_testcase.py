@@ -24,6 +24,10 @@ class TestHomePage(TestCase):
         print(f"\nResponse code: {response.status_code}")
         self.assertTemplateUsed(response, "base/home.html")
         self.assertEqual(response.status_code, HTTPStatus.OK)
+        # self.assertEqual(response.context.get("rooms"), "Not found")
+        # self.assertEqual(response.context.get("topics"), "Not found")
+        # self.assertEqual(response.context.get("room_count"), "Not found")
+        # self.assertEqual(response.context.get("room_messages"), "Not found")
 
     def test_VWS_171_homepage_returns_correct_title(self):
         """Test if homepage has correct title"""
