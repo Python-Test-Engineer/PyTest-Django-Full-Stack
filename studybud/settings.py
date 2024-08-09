@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "corsheaders",
     "django_extensions",
     "classroom.apps.ClassroomConfig",
+    "books.apps.BooksConfig",
 ]
 AUTH_USER_MODEL = "base.User"
 
