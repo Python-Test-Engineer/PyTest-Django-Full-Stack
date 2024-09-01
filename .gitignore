@@ -6,3 +6,11 @@
 log/
 
 venv/
+**/__
+
+**/__pycache__/
+__pycache__/
+*.py[cod]
+*$py.class
+**/*.pyc
+.pytest_cache
