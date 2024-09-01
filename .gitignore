@@ -1,4 +1,6 @@
 # keep results folder but not csv files
+#Database
+# *.sqlite3
 
 /results/** 
 !**/.gitkeep
@@ -10,8 +12,7 @@ log/
 # Text backup files
 *.bak
 
-#Database
-*.sqlite3
+
 
 
 # Byte-compiled / optimized / DLL files

@@ -1,6 +1,7 @@
 Django==5.0.8
 django-extensions
 dj-database-url==2.1.0
+django-ninja
 playwright
 pyboxen
 psycopg2-binary==2.9.9

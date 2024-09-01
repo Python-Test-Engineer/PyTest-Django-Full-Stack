@@ -143,7 +143,7 @@ class RenewBookInstancesViewTest(TestCase):
             response.context["form"], "renewal_date", "Invalid date - renewal in past"
         )
 
-    def test_form_invalid_renewal_date_future(self):
+    def test_420_FRM_form_invalid_renewal_date_future(self):
         login = self.client.login(username="testuser2", password="2HJ1vRV0Z&3iD")
 
         invalid_date_in_future = datetime.date.today() + datetime.timedelta(weeks=5)

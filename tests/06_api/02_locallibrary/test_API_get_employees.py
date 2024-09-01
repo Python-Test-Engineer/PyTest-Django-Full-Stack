@@ -11,6 +11,8 @@ console = Console()
 
 basebase_url = get_locallibrary_api_url()
 
+# Ensure site is running
+
 
 def test_url() -> None:
     """Testing URL"""
