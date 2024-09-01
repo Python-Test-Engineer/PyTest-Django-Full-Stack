@@ -176,4 +176,4 @@ class Author(models.Model):
 class Employee(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
-    birthdate = models.DateField()
+    birthdate = models.DateField(null=True, blank=True)

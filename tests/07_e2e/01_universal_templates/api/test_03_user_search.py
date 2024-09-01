@@ -23,7 +23,7 @@ def api_context(playwright: Playwright) -> APIRequestContext:
 #  https://dummyjson.com/users/search?q=John
 
 
-def test_0172_users_search(api_context: APIRequestContext):
+def test_703_E2E_users_search(api_context: APIRequestContext):
     query = "Emily"
     response = api_context.get(f"/users/search?q={query}")
 

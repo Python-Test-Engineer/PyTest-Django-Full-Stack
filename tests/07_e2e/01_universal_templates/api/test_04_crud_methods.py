@@ -29,7 +29,7 @@ def api_context(playwright: Playwright) -> APIRequestContext:
     api_context.dispose()
 
 
-def test_0175_create_user(api_context: APIRequestContext):
+def test_704_E2E_create_user(api_context: APIRequestContext):
     """
     Creates a new user by sending a POST request to the "users/add" endpoint of the API.
 
@@ -48,7 +48,7 @@ def test_0175_create_user(api_context: APIRequestContext):
     assert user_data["firstName"] == "Damien"
 
 
-def test_0176_update_user(api_context: APIRequestContext):
+def test_705_E2E_update_user(api_context: APIRequestContext):
     # print(
     #   "Default Last Name:",
     #   api_context.get("users/1").json()["lastName"]
@@ -67,7 +67,7 @@ def test_0176_update_user(api_context: APIRequestContext):
     assert user_data["age"] == 20
 
 
-def test_0177_remove_user(api_context: APIRequestContext):
+def test_706_E2E_remove_user(api_context: APIRequestContext):
     response = api_context.delete("users/1")
 
     user_data = response.json()

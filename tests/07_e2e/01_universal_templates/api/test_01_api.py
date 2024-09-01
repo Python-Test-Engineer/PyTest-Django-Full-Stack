@@ -3,7 +3,7 @@
 from playwright.sync_api import *
 
 
-def test_0170_users_api(page: Page):
+def test_700_users_api(page: Page):
     """
     Test the users API by making a request to the specified URL and asserting the presence of certain data.
 

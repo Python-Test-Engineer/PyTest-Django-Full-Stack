@@ -3,7 +3,7 @@
 from playwright.sync_api import *
 
 
-def test_0171_users_api(playwright: Playwright):
+def test_701_E2E_users_api(playwright: Playwright):
     """
     Function to test the users API.
 
