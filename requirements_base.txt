@@ -1,0 +1,11 @@
+Django==5.0.8
+django-extensions
+dj-database-url==2.1.0
+rich
+playwright
+pyboxen
+psycopg2-binary==2.9.9
+pytest-django
+pytest-playwright
+wheel==0.38.1
+whitenoise==6.6.0
