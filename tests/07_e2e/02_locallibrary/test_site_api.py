@@ -23,14 +23,16 @@ class MyPlaywrightTests(StaticLiveServerTestCase):
             browser = webkit.launch()
             context = browser.new_context()
             page = context.new_page()
-            print(self.live_server_url)
-            page.goto(f"{self.live_server_url}/login/")
+            print(f"{self.live_server_url}/catalog/")
+            page.goto(f"{self.live_server_url}/catalog/")
+
+            page.get_by_role("link", name="Login").click()
+            page.get_by_label("Username:").click()
+            page.get_by_label("Username:").fill("admin")
+            page.get_by_label("Username:").press("Tab")
+            page.get_by_label("Password:").fill("password@2024")
+            page.get_by_role("button", name="login").click()
+
             page.locator("html")
-            page.get_by_label("Username:")
-            # page.get_by_label("Username:").fill("admin")
-            # page.get_by_label("Password:").fill("password@2024")
-            # page.get_by_role("button", name="login").click()
-            # expect(page).to_have_title(re.compile("Local Library"))
-            assert True
-            # run(playwright)
+
             browser.close()
