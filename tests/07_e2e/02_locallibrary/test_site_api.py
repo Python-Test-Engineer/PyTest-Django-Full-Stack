@@ -3,6 +3,9 @@ from playwright.sync_api import Page, Locator, expect
 import re
 import pytest
 from playwright.sync_api import sync_playwright, Playwright
+from rich.console import Console
+
+console = Console()
 
 
 def test_750_E2E_login_then_get_title(page: Page) -> None:
@@ -23,16 +26,19 @@ class MyPlaywrightTests(StaticLiveServerTestCase):
             browser = webkit.launch()
             context = browser.new_context()
             page = context.new_page()
-            print(f"{self.live_server_url}/catalog/")
+            console.print(
+                f"[blue bold]Using: {self.live_server_url}/catalog/[/blue bold]"
+            )
+            console.print(
+                f"[dark_orange italic]Note using a random port {self.live_server_url}[/]"
+            )
             page.goto(f"{self.live_server_url}/catalog/")
-
             page.get_by_role("link", name="Login").click()
             page.get_by_label("Username:").click()
             page.get_by_label("Username:").fill("admin")
             page.get_by_label("Username:").press("Tab")
             page.get_by_label("Password:").fill("password@2024")
             page.get_by_role("button", name="login").click()
-
             page.locator("html")
-
+            expect(page).to_have_title(re.compile("Local Library"))
             browser.close()
