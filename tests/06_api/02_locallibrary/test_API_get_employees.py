@@ -19,7 +19,7 @@ def test_url() -> None:
     print(basebase_url)
     assert basebase_url
 
-
+@pytest.mark.skip(reason="needs server running")
 def test_0170_API_get_employees() -> None:
     """Testing GET"""
     url = basebase_url

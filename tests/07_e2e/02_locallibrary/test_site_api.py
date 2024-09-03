@@ -1,7 +1,7 @@
-
 from django.test import LiveServerTestCase
 from playwright.sync_api import Page, expect
 import re
+import pytest
 
 from playwright.sync_api import sync_playwright
 from rich.console import Console
@@ -9,7 +9,9 @@ from rich.console import Console
 console = Console()
 
 
+@pytest.mark.skip(reason="needs server running")
 def test_750_E2E_login_then_get_title(page: Page) -> None:
+    """Needs server running"""
     page.goto("http://127.0.0.1:8000/accounts/login/?next=/catalog/")
     page.locator("html").click()
     page.get_by_label("Username:").click()
