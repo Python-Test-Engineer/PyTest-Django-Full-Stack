@@ -11,7 +11,7 @@ console = Console()
 
 basebase_url = get_locallibrary_api_url()
 
-# Ensure site is running
+# Ensure site is running if not using Client or RequestFactory
 
 
 def test_url() -> None:

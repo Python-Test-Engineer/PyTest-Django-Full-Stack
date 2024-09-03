@@ -71,7 +71,8 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 cover/
-
+**/*.pyc
+*.pyc
 # Translations
 *.mo
 *.pot
