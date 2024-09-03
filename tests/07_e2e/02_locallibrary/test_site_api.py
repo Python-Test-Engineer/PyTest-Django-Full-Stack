@@ -1,8 +1,9 @@
-from django.contrib.staticfiles.testing import StaticLiveServerTestCase
-from playwright.sync_api import Page, Locator, expect
+
+from django.test import LiveServerTestCase
+from playwright.sync_api import Page, expect
 import re
-import pytest
-from playwright.sync_api import sync_playwright, Playwright
+
+from playwright.sync_api import sync_playwright
 from rich.console import Console
 
 console = Console()
@@ -18,7 +19,7 @@ def test_750_E2E_login_then_get_title(page: Page) -> None:
     expect(page).to_have_title(re.compile("Local Library"))
 
 
-class MyPlaywrightTests(StaticLiveServerTestCase):
+class MyPlaywrightTests(LiveServerTestCase):
     def test_753_E2Epage(self):
 
         with sync_playwright() as playwright:
